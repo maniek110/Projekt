@@ -22,7 +22,7 @@ img:hover{
 }
 #block2{
     background-color:#1c0704;
-    height: 49vh;
+    height: 48.5vh;
     vertical-align: bottom;
 }
 #mainobj{
@@ -33,7 +33,7 @@ img:hover{
     box-shadow:100px 100px 50px 20px black inset;
     background-repeat:no-repeat;
 }
-#Info{
+.Info{
     background-color:ghostwhite;
     color: black;
     position: absolute;
@@ -50,7 +50,7 @@ img:hover{
 }
 #Info3{
     color: ghostwhite;
-    margin: 10px 20px 10px 10px;
+    margin: 0px 20px 10px 10px;
     font-family: Hero;
     z-index: 1;
     height: 90%;
@@ -62,6 +62,25 @@ img:hover{
     height: 95%;
     width: 95%;
     font-size: 22px;
+}
+.Info4{
+    background-color:ghostwhite;
+    color: black;
+    position: absolute;
+    top: 30%;
+    right: 8%;
+    font-family: Hero;
+    z-index: 1;
+    width: 32%;
+    opacity: 0.7;
+    font-size: 19px;
+    text-align: right;
+    
+     transition: all 500ms ease-in;
+}
+.Info4#pole{
+    width: 20%;
+    
 }
 img{
     left: 10px;
@@ -81,8 +100,12 @@ ul{
 }
 a{
     text-decoration: none;
+    color: black;
 }
 d{
     text-align: justify;
     font-size: 30px;
+}
+#add{
+    margin: 10px 10px 10px 10px;
 }
