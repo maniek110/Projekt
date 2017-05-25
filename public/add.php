@@ -1,3 +1,5 @@
+<?php
+require('auth.php')?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -10,12 +12,15 @@
 <script src="script.js"></script>
 <?php
 	require('db.php');
-    if (isset($_REQUEST['add'])){
-		$add = stripslashes($_REQUEST['add']); // removes backslashes
-		$add = mysqli_real_escape_string($con,$add); //escapes special characters in a string
-    $add = trim($add);
+    if (isset($_REQUEST['title'])){
+		$title = stripslashes($_REQUEST['title']); // removes backslashes
+		$title = mysqli_real_escape_string($con,$title); //escapes special characters in a string
+    $title = trim($title);
+		$author = stripslashes($_REQUEST['author']); // removes backslashes
+		$author = mysqli_real_escape_string($con,$author); //escapes special characters in a string
+    $author = trim($author);
 
-        $query = "INSERT into `test` (tytul ) VALUES ('$add')";
+        $query = "INSERT into `test` (tytul, autor ) VALUES ('$title','$author')";
         $result = mysqli_query($con,$query);
         if($result){
             echo "<div class='form'><h3>Poprawnie dodano.</h3><br/>Przejdź do <a href='index.php'>strony głównej</a></div>";
@@ -25,10 +30,11 @@
 <div class="form">
 <h1>Dodawanie pozycji</h1>
 <form name="registration" action="" method="post">
-<input type="text" name="add" placeholder="" required />
+<input type="text" name="title" placeholder="Tytuł" required />
+<input type="text" name="author" placeholder="Autor" required />
 <input type="submit" name="submit" value="Dodaj!" />
 </form>
-<p><a href="index.php">Strona główna</a></p>
+<p><a href="start">Strona główna</a></p>
 </div>
 <?php } ?>
 </body>
