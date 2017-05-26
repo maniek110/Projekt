@@ -1,32 +1,49 @@
-<!DOCTYPE html>
-<html lang="">
 <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="main.css">
     <title>Testowa</title>
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="//fonts.googleapis.com/css?family=Raleway:400,300,600" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="css/normalize.css">
+    <link rel="stylesheet" href="css/skeleton.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 </head>
 
 <body>
-<!-- Opcje lewa -->
-<div id="opt">
-    <div id="block1"><div id="Info3"><br><br><br><br><br><br><br><br><center>Witamy serdecznie na stronie głównej<br>
-        <div class="Info2"><d>Biblioteki Publicznej nr.1 w Ciechocinku</d></div>
-        </center></div></div><br>
-    <div id="block2"></div>
-</div>
-<!-- Main obj -->
-<div id="mainobj">
-<div class="Info"><div class="Info2">
-    <br>Opcje<br><br>
+    <div class="twelve columns tlo1">
+        <div class="six columns">das</div>
+        <div class="six columns" style="text-align:right;"><a style="position:absolute; right:0px; transition: all 1s;" id="button" onclick="myClick()" onmouseover='document.getElementById("button").style.right = "100px"' onmouseout='document.getElementById("button").style.right = "0px"'><img src="Images/option.png"></a></div>
     </div>
-    <ul>
-        <li><a href="add.html">Dodaj książkę</a></li>
-        <li><a href="find.html">Znajdź książkę</a></li>
-    </ul>
-    <br>
+    <div class="twelve columns tlo2 marginy">
+        <div id="animate" class="one-half column offset-by-one-half columns" style="background-color:red; transition:all 1s;">
+         dasdasdad   
+        </div>
     </div>
-<img src="Images/library-488678_640.jpg" id="obrazek">
-</div>
+    <div class="twelve columns tlo3"></div>
+    
+
+    <!-- End Document
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+
+<script>
+function myClick() {
+  var x = document.getElementById('animate');
+    if(x.style.opacity ==='0'){
+        x.style.opacity = '1'
+    }
+    else{
+        x.style.opacity = '0';
+    }
+}
+function moving(){
+    var x = document.getElementById("button");
+    if(MouseEvent === onmouseover){
+    document.getElementById("button").style.right = "100px";
+    }
+    else{
+        document.getElementById("button").style.right = "0px";
+    }
+    }
+</script>
 </body>
-</html>
