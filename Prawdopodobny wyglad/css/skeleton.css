@@ -43,6 +43,7 @@
 
 /* For devices larger than 400px */
 @media (min-width: 400px) {
+    body{font-size:18px; }
   .container {
     width: 85%;
     padding: 0; }
@@ -50,6 +51,7 @@
 
 /* For devices larger than 550px */
 @media (min-width: 550px) {
+    body{font-size:18px; }
   .container {
     width: 80%; }
   .column,
@@ -125,7 +127,8 @@ body {
   line-height: 1.6;
   font-weight: 400;
   font-family: "Raleway", "HelveticaNeue", "Helvetica Neue", Helvetica, Arial, sans-serif;
-  color: #222;}
+  color: #222;
+background-image: url(../Images/shelf_library_roots_books_77011_1920x1080.jpg);}
 
 
 /* Typography
@@ -172,9 +175,8 @@ p {
     position: absolute;
 }
 .tlo2{
-    background-image: url(../Images/shelf_library_roots_books_77011_1920x1080.jpg);
     background-size: cover;
-    height: 90%;
+    top: 180px;
     background-attachment: fixed;
     background-position: center;
     background-repeat: no-repeat;
@@ -204,7 +206,17 @@ p {
     width: 85px;
     height: 55px;
 }
-
+.center{
+text-transform: uppercase;
+font-weight: 600;
+color: #FFF;
+background-color: rgba(0, 0, 0, 0.5);
+display: inline-block;
+line-height: 76px;
+margin-bottom: 10px;
+padding: 0px 10px;
+box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)
+}
 
 /* Links
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
@@ -454,16 +466,28 @@ there.
 
 
 /* Larger than mobile */
-@media (min-width: 400px) {}
+@media (max-width: 400px) {
+  body{font-size:18px; }
+  h1{font-size: 20px}
+}
 
 /* Larger than phablet (also point when grid becomes active) */
-@media (min-width: 550px) {}
+@media (min-width: 550px) {body{font-size:18px; }
+  h1{font-size: 20px}}
 
 /* Larger than tablet */
-@media (min-width: 750px) {}
+@media (min-width: 750px) {
+    body{font-size:22px; }
+  h1{font-size: 22px}
+}
 
 /* Larger than desktop */
-@media (min-width: 1000px) {}
+@media (min-width: 1000px) {
+    body{font-size:26px; }
+  h1{font-size: 26px}
+}
 
 /* Larger than Desktop HD */
-@media (min-width: 1200px) {}
+@media (min-width: 1200px) {
+    
+}
