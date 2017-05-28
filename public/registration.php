@@ -26,6 +26,26 @@
     }else{
 ?>
 	<script>
+		
+		 function validateEmail($email) {
+  var emailReg = /^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/;
+  return emailReg.test( $email );
+}
+		function vali()
+		{
+			var mail= document.getElementById("mail").value;
+			if(validateEmail(mail)==false)
+				{
+					document.getElementById("mysubmit").disabled = true;
+					document.getElementById("validate-email").innerHTML = 'Incorrect email!' ;
+				}
+			else
+				{
+					document.getElementById("mysubmit").disabled = false;
+					document.getElementById("validate-email").innerHTML = 'Correct email.' ;
+				}
+		}
+		
 		function dis()
 		{
 			var password1 = document.getElementById("password1").value;
@@ -53,17 +73,27 @@
 });
 		
 		
+		$(function() {
+    $("#mail").keyup(
+			function() 
+				{
+        vali();
+        });
+
+});
+		
 		
 	
 	</script>
 <div class="form">
 <h1>Rejestracja</h1>
-<form name="registration" action="" method="post">
+<form name="registration" action="" method="post" enctype="multipart/form-data">
 <input type="text" name="uname" placeholder="Login" required />
-<input type="email" name="mail" placeholder="Email" required />
+<input type="text" name="mail" id="mail" placeholder="Email" required />
 <input type="password" name="password1" id="password1" placeholder="Hasło" required />
 <input type="password" name="password2" id="password2" placeholder="Potwierdź hasło" required />
 	<div id='validate-status'></div>
+	<div id='validate-email'></div>
 <input type="submit" name="submit" id="mysubmit" value="Rejestruj" />
 </form>
 <p><a href="index.php">Strona główna</a></p>

@@ -10,6 +10,12 @@
 <?php
 	require('db.php');
 	session_start();
+	
+	if(isset($_SESSION['username']))
+	{
+		header("Location: start");
+	}
+	
     if (isset($_POST['username'])){
 		
 		$username = stripslashes($_REQUEST['username']); 
@@ -45,6 +51,9 @@
 
 
 </div>
+	<br/> 
+	Nie masz jescze konta?<br>
+	<a href='registration'>Zarejestruj się!</a>
 <?php } ?>
 
 
