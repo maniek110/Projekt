@@ -1,4 +1,4 @@
-require('auth.php')?>
+<?require('auth.php')?>
 <!DOCTYPE HTML> 
 <html> 
 <head> 
@@ -22,6 +22,7 @@ require('auth.php')?>
 		<ul><li><a href="index.php">Home</a></li>
 		    <li><a href="index2.php">Wyszukiwanie</a></li>
 		    <li><a href="add.php">Dodawanie</a></li>
+		    <li><a href="show.php">Zbiór książek</a></li>
 		    <li><a href="logout.php">Wyloguj</a></li>
 		</ul>
 		<div class="clear"></div>
@@ -31,7 +32,7 @@ require('auth.php')?>
 <div id="main">
 	<div class="container">
         <div id="content" style="width:100%"><center><br><br><h1>Wyszukiwanie</h1>
-Witaj <?php echo $_SESSION['username']; ?>!
+Witaj <?php echo $_SESSION['username']; ?> !
 	<br>
 	<br>
 <form name="registration" action="" method="post">
@@ -122,7 +123,7 @@ Witaj <?php echo $_SESSION['username']; ?>!
 				{
 					for($j=0;$j<=2;$j++)
 					 {
-				    if($title==$books[$i][$j])
+				    if($title == $books[$i][$j])
 				    {
 			  			echo $books[$i][0];
 							echo ' ~ ';

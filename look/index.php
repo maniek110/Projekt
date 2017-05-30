@@ -8,6 +8,13 @@
 	</head> 
  
 <body> 
+	<?
+	session_start();
+if(isset($_SESSION["username"]))
+{	
+header("Location: index2.php");
+}
+	?>
 
 <div id="top">
 	<div class="container">

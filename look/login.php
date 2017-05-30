@@ -27,14 +27,7 @@
 	</div>
 </div>
 
-<div id="main">
-	<div class="container">
-        <div id="content" style="width:100%"><br><br><center><h1>Logowanie</h1>
-<form action="" method="post" name="login">
-<input type="text" name="username" placeholder="Login"/><br>
-<input type="password" name="password" placeholder="Hasło"/><br>
-<input name="submit" type="submit" value="Login" />
-</form><?php
+<?php
 	require('db.php');
 	session_start();
     if (isset($_POST['username'])){
@@ -55,15 +48,24 @@
 				$_SESSION['firstname'] = $row["firstname"];
 			 }
 	
-			header("Location: index"); 
+			header("Location: index2.php"); 
             }else{
 				echo "<div class='form'><h3>Błędny login lub hasło.</h3><br/>Przejdź do <a href='login'> strony logowania!</a></div>";
 				}
-    }else{
-?></center></div>
+    }else{}
+?>
+<div id="main">
+	<div class="container">
+        <div id="content" style="width:100%"><br><br><center><h1>Logowanie</h1>
+<form action="" method="post" name="login">
+<input type="text" name="username" placeholder="Login"/><br>
+<input type="password" name="password" placeholder="Hasło"/><br>
+<input name="submit" type="submit" value="Login" />
+</form></center></div>
         
 	</div>
 </div>
+	<?}?>
 	
 </body> 
  

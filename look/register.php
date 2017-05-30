@@ -52,7 +52,7 @@
         if($result){
             echo "<div class='form'><h3>Poprawinie zarejestronwano.</h3><br/>Przejdź do <a href='start'>strony głównej</a></div>";
         }
-    }else{
+    }else{}
 ?>
 	<script>
 		function dis()
@@ -87,8 +87,7 @@
 	</script></center></div>
         
 	</div>
-</div>
-	
+</div>	
 </body> 
  
 </html> 
