@@ -17,8 +17,9 @@
 		$mail = mysqli_real_escape_string($con,$mail);
 		$pass = stripslashes($_REQUEST['password1']);
 		$pass = mysqli_real_escape_string($con,$pass);
+		$ile = 0;
 
-        $query = "INSERT into `users` (uname, pass, mail ) VALUES ('$uname', '".md5($pass)."', '$mail')";
+        $query = "INSERT into `users` (uname, pass, mail, ile ) VALUES ('$uname', '".md5($pass)."', '$mail', '$ile')";
         $result = mysqli_query($con,$query);
         if($result){
             echo "<div class='form'><h3>Poprawinie zarejestronwano.</h3><br/>Przejdź do <a href='start'>strony głównej</a></div>";

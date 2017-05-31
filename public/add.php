@@ -50,6 +50,13 @@ function no_pl($tekst)
 		$author = stripslashes($_REQUEST['author']); // removes backslashes
 		$author = mysqli_real_escape_string($con,$author); //escapes special characters in a string
     $author = trim($author);
+		$isbn = stripslashes($_REQUEST['isbn']); 
+		$isbn = mysqli_real_escape_string($con,$isbn); 
+		$isbn = trim($isbn);
+		$ile = stripslashes($_REQUEST['ile']); 
+		$ile = mysqli_real_escape_string($con,$ile); 
+
+		
 		
 	
 $target_dir = "uploads/";
@@ -103,7 +110,7 @@ if ($uploadOk == 0) {
 } else {
     if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_dir.$target_file)) {
         echo "The file ". basename( $_FILES["fileToUpload"]["name"]). " has been uploaded.";
-				 $query = "INSERT into `test` (tytul, autor, okladka ) VALUES ('$title','$author', '$target_file')";
+				 $query = "INSERT into `test` (tytul, autor, okladka, isbn, ile, dostepne ) VALUES ('$title','$author', '$target_file', '$isbn', '$ile', '$ile')";
         $result = mysqli_query($con,$query);
     } else {
         echo "Sorry, there was an error uploading your file.";
@@ -122,6 +129,8 @@ if ($uploadOk == 0) {
 <form name="registration" action="" method="post" enctype="multipart/form-data">
 <input type="text" name="title" placeholder="Tytuł" required />
 <input type="text" name="author" placeholder="Autor" required />
+<input type="text" name="isbn" placeholder="ISBN" required />
+<input type="number" name="ile" placeholder="Ilość" required />
  <input type="file" name="fileToUpload" id="fileToUpload" required>
 <input type="submit" name="submit" value="Dodaj!" />
 </form>

@@ -8,6 +8,12 @@ require('auth.php')?>
 <link rel="stylesheet" href="css/style.css" />
 </head>
 <body>
+<style>
+
+table, th, td {
+    border: 1px solid black;
+}
+</style>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 <script src="script.js"></script>
 
@@ -21,12 +27,41 @@ Witaj <?php echo $_SESSION['username']; ?>!
 <select name="cat">
 		<option>Tytuł</option>
 		<option>Autor</option>
+	<option>ISBN</option>
 	</select>
 <input type="submit" name="submit" value="Wyszukaj!" />
 </form>
 <p><a href="add">Dodawanie pozycji</a></p>
 </div>
 <?php
+
+function normalize($tekst)
+{
+  $tabela = Array(
+	" " => "-",
+  //WIN
+"\xb9" => "a", "\xa5" => "A", "\xe6" => "c", "\xc6" => "C",
+"\xea" => "e", "\xca" => "E", "\xb3" => "l", "\xa3" => "L",
+"\xf3" => "o", "\xd3" => "O", "\x9c" => "s", "\x8c" => "S",
+"\x9f" => "z", "\xaf" => "Z", "\xbf" => "z", "\xac" => "Z",
+"\xf1" => "n", "\xd1" => "N",
+  //UTF
+"\xc4\x85" => "a", "\xc4\x84" => "A", "\xc4\x87" => "c", "\xc4\x86" => "C",
+"\xc4\x99" => "e", "\xc4\x98" => "E", "\xc5\x82" => "l", "\xc5\x81" => "L",
+"\xc3\xb3" => "o", "\xc3\x93" => "O", "\xc5\x9b" => "s", "\xc5\x9a" => "S",
+"\xc5\xbc" => "z", "\xc5\xbb" => "Z", "\xc5\xba" => "z", "\xc5\xb9" => "Z",
+"\xc5\x84" => "n", "\xc5\x83" => "N",
+  //ISO
+"\xb1" => "a", "\xa1" => "A", "\xe6" => "c", "\xc6" => "C",
+"\xea" => "e", "\xca" => "E", "\xb3" => "l", "\xa3" => "L",
+"\xf3" => "o", "\xd3" => "O", "\xb6" => "s", "\xa6" => "S",
+"\xbc" => "z", "\xac" => "Z", "\xbf" => "z", "\xaf" => "Z",
+"\xf1" => "n", "\xd1" => "N");
+
+  return strtr($tekst,$tabela);
+}
+		
+	
 	function no_pl($tekst)
 {
   $tabela = Array(
@@ -60,7 +95,7 @@ Witaj <?php echo $_SESSION['username']; ?>!
 	//mysqli_query($con,$query);
 	
 
-    if (isset($_REQUEST['search'])&&$_REQUEST['search']!='')
+    if (isset($_REQUEST['search'])&& $_REQUEST['search']!='')
 	{
 		//$search = stripslashes($_REQUEST['search']); 
 		$search = $_REQUEST['search'];
@@ -75,6 +110,9 @@ Witaj <?php echo $_SESSION['username']; ?>!
         break;
     case "Tytuł":
         $cat='tytul';
+        break;
+		 case "ISBN":
+        $cat='isbn';
         break;
 }
 
@@ -96,9 +134,14 @@ Witaj <?php echo $_SESSION['username']; ?>!
 			
 			 while($row = $result->fetch_assoc()) 
 			 {
+				 
 				 $boTitle=$row['tytul'];
 				 $boAuthor=$row['autor'];
-				 $books[$bo]=array($boTitle,$boAuthor);
+				 $boOkladka=$row['okladka'];
+				 $boISBN=$row['isbn'];
+				 $boIlosc=$row['ilosc'];
+				 $boDostepnosc=$row['dostepne'];
+				 $books[$bo]=array($boTitle,$boAuthor,$boOkladka,$boISBN,$boIlosc,$boDostepnosc);
 				
 				$name = no_pl($row[$cat]);
 				$name = strtolower($name);
@@ -142,10 +185,38 @@ Witaj <?php echo $_SESSION['username']; ?>!
 						 $var =  $books[$i][$j];
 				    if($title== $var)
 				    {	
-							
+							/*
 			  			echo $books[$i][0];
 							echo ' ~ ';
 							echo $books[$i][1];
+							echo ' ';
+							echo $books[$i][2];
+							*/
+							echo "
+								<table>
+                <tr>
+                <th width=15%>".$books[$i][0]."</th>
+                <th width=15% rowspan='2'><img src='uploads/".$books[$i][2]."' alt='' height='594' width='420'></th>
+                </tr>
+                <tr>
+                <td width=30%>  ~ ".$books[$i][1]."</td>
+                </tr>
+               	<tr>
+                <td >".$books[$i][3]."</td>
+                <td >
+								Dostępne:".$books[$i][5]."/".$books[$i][4]."
+								<form name='registration' action='reservation?kek=".$books[$i][0]."' method='post'>
+								<select name='get-".strtolower(normalize($books[$i][0]))."'>
+								<option>Wypożycz</option>
+								<option>Oddaj</option>
+								</select>
+								<input type='submit' name='submit' value='Wyślij!' />
+								</form>
+								
+								</td>
+                </tr>
+               </table>
+               <br>";
 			    	}
 				   }
 				}

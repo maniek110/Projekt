@@ -31,7 +31,8 @@
 			
 			 while($row = $result->fetch_assoc()) 
 			 {
-				$_SESSION['firstname'] = $row["firstname"];
+				$_SESSION['ile'] = $row["ile"];
+				$_SESSION['limit'] = $row["limit"];
 			 }
 	
 			header("Location: index"); 

@@ -11,13 +11,11 @@ include("auth.php"); ?>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 <script src="script.js"></script>
 <style>
-
 table, th, td {
     border: 1px solid black;
 }
 	</style>
 
-<div class="show">
 <?php
 	
 	function normalize($tekst)
@@ -55,6 +53,30 @@ require "db.php";
 			
 			 while($row = $result->fetch_assoc()) 
 			 {
+				 
+				 $nazwa="ilosc-".strtolower(normalize($row['tytul']));
+				 $$nazwa=0;
+				 $kto=$row['kto'];
+$username=$_SESSION['username'];
+  
+  
+   $jest=false;
+   $ktoo=explode(' ',$kto);
+
+$licznik=0;
+  foreach($ktoo as $osoba)
+  {
+    if($osoba==$username)
+    {
+			$jest=true;
+			$$nazwa++;
+    }
+	}
+
+
+  
+				 if($jest)
+				 {
 				echo "
 				<table>
   <tr>
@@ -66,11 +88,8 @@ require "db.php";
   </tr>
 	<tr>
     <td >".$row["isbn"]."</td>
-     <td >
-								Dostępne:".$row['dostepne']."/".$row['ilosc']."
-								<form name='registration' action='reservation?kek=".$row['tytul']."' method='post'>
+    <td >Wypożyczone:".$$nazwa."<form name='registration' action='reservation?kek=".$row['tytul']."' method='post'>
 								<select name='get-".strtolower(normalize($row['tytul']))."'>
-								<option>Wypożycz</option>
 								<option>Oddaj</option>
 								</select>
 								<input type='submit' name='submit' value='Wyślij!' />
@@ -81,6 +100,7 @@ require "db.php";
                </table>
                <br>
   ";
+				 }
 			 }
 		}
 		else
