@@ -1,35 +1,15 @@
 <?php
 require('auth.php')?>
-<!DOCTYPE HTML> 
-<html> 
-<head> 
-
-	<meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <link rel="stylesheet" href="template.css" type="text/css"> 
-	</head> 
- 
-<body> 
-
-<div id="top">
-	<div class="container">
-        <a href="search" id="logo"><h2>Biblioteka Publiczna <br>w Ciechocinku</h2></a>
-		<div class="clear"></div>
-	</div>
-</div>
-
-<div id="topmenu">
-	<div class="container">
-		<ul><li><a href="start">Home</a></li>
-		    <li><a href="search">Wyszukiwanie</a></li>
-		    <li><a href="add">Dodawanie</a></li>
-		    <li><a href="show">Zbiór książek</a></li>
-			<li><a href="rented">Wypożyczone ksiązki</a></li>
-		    <li><a href="logout">Wyloguj</a></li>
-		</ul>
-		<div class="clear"></div>
-	</div>
-	</div>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Dodawanie pozycji</title>
+<link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<script src="script.js"></script>
 <?php
 
 function no_pl($tekst)
@@ -75,6 +55,8 @@ function no_pl($tekst)
 		$isbn = trim($isbn);
 		$ile = stripslashes($_REQUEST['ile']); 
 		$ile = mysqli_real_escape_string($con,$ile); 
+
+		
 		
 	
 $target_dir = "uploads/";
@@ -123,27 +105,27 @@ if($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg
 $target_file =  strtolower(no_pl($title)) .'.'.$imageFileType;
 if ($uploadOk == 0) {
     echo "Sorry, your file was not uploaded.";
+		 echo "Przejdź do <a href='index.php'>strony głównej</a>";
 // if everything is ok, try to upload file
 } else {
     if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_dir.$target_file)) {
         echo "The file ". basename( $_FILES["fileToUpload"]["name"]). " has been uploaded.";
-				 $query = "INSERT into `test` (tytul, autor, okladka, isbn, ilosc, dostepne ) VALUES ('$title','$author', '$target_file', '$isbn', '$ile', '$ile' )";
+				 $query = "INSERT into `test` (tytul, autor, okladka, isbn, ile, dostepne ) VALUES ('$title','$author', '$target_file', '$isbn', '$ile', '$ile')";
         $result = mysqli_query($con,$query);
     } else {
         echo "Sorry, there was an error uploading your file.";
-			  
+			  echo "Przejdź do <a href='index.php'>strony głównej</a>";
     }
 }
 
        
         if($result){
-            echo "<div class='form'><h3>Poprawnie dodano.</h3>";
+            echo "<div class='form'><h3>Poprawnie dodano.</h3><br/>Przejdź do <a href='index.php'>strony głównej</a></div>";
         }
-    }else{}
+    }else{
 ?>
-<div id="main">
-	<div class="container">
-        <div id="content" style="width:100%"><center><br><br><h1>Dodawanie pozycji</h1>
+<div class="form">
+<h1>Dodawanie pozycji</h1>
 <form name="registration" action="" method="post" enctype="multipart/form-data">
 <input type="text" name="title" placeholder="Tytuł" required />
 <input type="text" name="author" placeholder="Autor" required />
@@ -151,10 +133,9 @@ if ($uploadOk == 0) {
 <input type="number" name="ile" placeholder="Ilość" required />
  <input type="file" name="fileToUpload" id="fileToUpload" required>
 <input type="submit" name="submit" value="Dodaj!" />
-</form></center></div>
-		<div class="clear"></div>
-	</div>
+</form>
+<p><a href="start">Strona główna</a></p>
 </div>
-</body> 
-	
-</html> 
+<?php } ?>
+</body>
+</html>

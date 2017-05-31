@@ -9,11 +9,9 @@
  
 <body> 
 	<?
+	require 'auth.php';
 	session_start();
-if(isset($_SESSION["username"]))
-{	
-header("Location: main");
-}
+
 	?>
 
 <div id="top">
@@ -26,21 +24,26 @@ header("Location: main");
 <div id="topmenu">
 	<div class="container">
 		<ul><li><a href="start">Home</a></li>
-		    <li><a href="login">Logowanie</a></li>
-		    <li><a href="register">Rejestracja</a></li>
+		    <li><a href="search">Wyszukiwanie</a></li>
+		    <li><a href="add">Dodawanie</a></li>
+		    <li><a href="show">Zbiór książek</a></li>
+			<li><a href="rented">Wypożyczone ksiązki</a></li>
+		    <li><a href="logout">Wyloguj</a></li>
 		</ul>
+		<div class="clear"></div>
+	</div>
+	</div>
+
+<div id="main">
+	
+	<div class="container">
+		<center>
+        <div id='content' style="width:100%"><h1><center><br><br>Witaj na stronie głównej Biblioteki Publicznej w Ciechocinku!</center></h1></div>
+       </center> 
 		<div class="clear"></div>
 	</div>
 </div>
 
-<div id="main">
-	<div class="container">
-        <div id="content"><h1><center><br><br>Witaj na stronie głównej Biblioteki Publicznej w Ciechocinku!</center></h1></div>
-        <a href="login"><div id="sidebar-a"><h1><center><br><br>Przejdź do logowania!</center></h1></div></a>
-        <a href="register"><div id="sidebar-b"><h1><center><br><br>Zarejestruj sie!</center></h1></div></a>
-		<div class="clear"></div>
-	</div>
-</div>
 	
 </body> 
  

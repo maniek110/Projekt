@@ -1,0 +1,87 @@
+@font-face {
+    font-family: Hero;
+    src: url(Hero.otf);
+}
+body {font-family: Hero; margin: 0;color: whitesmoke;}
+.clear {clear: both;}
+.container {margin: 0 auto; padding: 15px; height: inherit;}
+.height{min-height: 600px; overflow-y: auto;}
+#main{ background-image: url(images/shelf_library_roots_books_77011_1920x1080.jpg); height: 100vh;}
+#logo {width: 215px; height: 51px; margin: 10px 0 10px; display: block; text-align: center; text-decoration: none; color: black}
+#topmenu {background: #636363; font-family: Hero;}
+#topmenu .container {padding: 0;}
+
+#topmenu ul > li {display: block; float: left; background: #636363;}
+#topmenu ul > li > a {font-size: .9em; padding: 10px; display: block; color: #fff; text-decoration: none;}
+#topmenu ul > li > a:hover {background: #212121;}
+
+#content {width: 487px; background: gray; float: left; height: 300px; color: whitesmoke; opacity: 0.8;box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);}
+#sidebar-a {width: 238px; background: gray; height: 300px; float: left;color: whitesmoke;box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);opacity:0.8}
+#sidebar-b {width: 238px; background:gray; height: 300px; float: left;color: whitesmoke;box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);opacity: 0.8}
+
+/*MONITOR 3-kolumny*/
+@media (min-width: 1024px) {
+	.container {width: 994px;}
+	#content {width: 476px; margin-right: 10px;}
+	#sidebar-a {width: 238px; margin-right: 10px;}
+	#sidebar-b {width: 238px;}
+}
+
+/*MONITOR 2-kolumny*/
+@media (max-width: 1023px) {
+	.container {width: 715px;}
+	#content {width: 456px; margin-right: 10px;}
+	#sidebar-a {width: 238px; margin-right: 10px;}
+	#sidebar-b {display: none;}
+    .height{min-height: 500px}
+
+}
+
+/*MONITOR 1-kolumna*/
+@media (max-width: 734px) {
+	.container {width: 550px;}
+	#content {width: 550px; margin-right: 10px;}
+	#sidebar-a, #sidebar-b {display: none;}
+    .height{min-height: 400px}
+
+}
+
+/*SMARTFON*/
+@media (max-width: 599px) {
+	.container {width: 88%;}
+	#logo {margin: 0 auto; margin-top: 10px; margin-bottom: 10px;}
+	
+	#topmenu .container {padding: 4px;}
+	#topmenu ul  {display: table; margin: 0 auto; padding: 0; min-width: 100%; margin-left: 0;}
+	#topmenu ul > li {width: 100%; margin: 0 auto; text-align: center; border-bottom: 1px gray dotted;}
+	#topmenu ul > li:last-child {border: 0;}
+	#topmenu ul > li > a {font-size: 1.1em; padding: 12px;}
+	
+	#sidebar-a, #sidebar-b {display: none;}
+	#content {width: 100% !important;}
+    .height{min-height: 300px}
+
+}
+
+
+th,
+td {
+  padding: 2px 5px;
+  text-align: left;
+  border-bottom: 1px solid #E1E1E1; }
+th:first-child,
+td:first-child {
+  padding-left: 0; }
+th:last-child,
+td:last-child {
+  padding-right: 0; }
+table{
+    width: 75%;
+    height: 100%;
+}
+.myImg{
+    border-radius: 5px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+.myImg:hover {opacity: 0.7;}

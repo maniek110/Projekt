@@ -12,19 +12,19 @@
 <script src="script.js"></script>
 <div id="top">
 	<div class="container">
-        <a href="start" id="logo"><h2>Biblioteka Publiczna <br>w Ciechocinku</h2></a>
+        <a href="index.php" id="logo"><h2>Biblioteka Publiczna <br>w Ciechocinku</h2></a>
 		<div class="clear"></div>
 	</div>
 </div>
 
 <div id="topmenu">
 	<div class="container">
-		<ul><li><a href="start">Home</a></li>
-		    <li><a href="search">Wyszukiwanie</a></li>
-		    <li><a href="add">Dodawanie</a></li>
-		    <li><a href="show">Zbiór książek</a></li>
-			<li><a href="rented">Wypożyczone ksiązki</a></li>
-		    <li><a href="logout">Wyloguj</a></li>
+		<ul><li><a href="index.php">Home</a></li>
+		    <li><a href="index2.php">Wyszukiwanie</a></li>
+		    <li><a href="add.php">Dodawanie</a></li>
+		    <li><a href="show.php">Zbiór książek</a></li>
+			<li><a href="rented.php">Wypożyczone ksiązki</a></li>
+		    <li><a href="logout.php">Wyloguj</a></li>
 		</ul>
 		<div class="clear"></div>
 	</div>
@@ -167,22 +167,24 @@ elseif($wh=='oddaj')
    $ktoo=explode(' ',$kto);
   $jest=false;
   $licznik=0;
-  for($i=0;$i<=$ilosc;$i++)
+  foreach($ktoo as $osoba)
   {
-    if($ktoo[$i]==$username)
+    if($osoba==$username)
     {
-      $ktoo[$i]='';
+      $ktoo[$licznik]='';
+      $licznik++;
       $jest=true;
-			echo var_dump($ktoo);
-      break 1;
+      break;
     }
   }
-	
- 
+  $osoby=array();
   $licznikk=0;
-	echo var_dump($ktoo);
-   
-  $kto=implode(' ',$ktoo);
+    foreach($ktoo as $osobaa)
+  {
+    $osoby[$licznik]=$osobaa;
+    $licznikk++;
+  }
+  $kto=implode(' ',$osoby);
   
    
    if($jest==true)

@@ -1,43 +1,42 @@
+<?require('auth.php')?>
 <!DOCTYPE HTML> 
 <html> 
 <head> 
 
 	<meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <link rel="stylesheet" href="template.css" type="text/css"> 
-	  <link rel="stylesheet" href="images.css"> 
+    <link rel="stylesheet" href="template.css" type="text/css">
+    <link rel="stylesheet" href="images.css"> 
 	</head> 
  
 <body> 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-<script src="script.js"></script>
+
 <div id="top">
 	<div class="container">
-        <a href="start" id="logo"><h2>Biblioteka Publiczna <br>w Ciechocinku</h2></a>
+        <a href="index2.php" id="logo"><h2>Biblioteka Publiczna <br>w Ciechocinku</h2></a>
 		<div class="clear"></div>
 	</div>
 </div>
 
 <div id="topmenu">
 	<div class="container">
-		<ul><li><a href="start">Home</a></li>
-		    <li><a href="search">Wyszukiwanie</a></li>
-		    <li><a href="add">Dodawanie</a></li>
-		    <li><a href="show">Zbiór książek</a></li>
-			<li><a href="rented">Wypożyczone ksiązki</a></li>
-		    <li><a href="logout">Wyloguj</a></li>
+		<ul><li><a href="index.php">Home</a></li>
+		    <li><a href="index2.php">Wyszukiwanie</a></li>
+		    <li><a href="add.php">Dodawanie</a></li>
+		    <li><a href="show.php">Zbiór książek</a></li>
+			<li><a href="rented.php">Wypożyczone ksiązki</a></li>
+		    <li><a href="logout.php">Wyloguj</a></li>
 		</ul>
 		<div class="clear"></div>
 	</div>
 	</div>
+
 <div id="main">
 	<div class="container">
-        <div id="content" class= 'height' style="width:100%"><br><br><center>
-
-<?
+        <div id="content" class="height" style="width:100%">
+        <center><?php
 					
-						
-	function normalize($tekst)
+					function normalize($tekst)
 {
   $tabela = Array(
 	" " => "-",
@@ -62,8 +61,8 @@
 
   return strtr($tekst,$tabela);
 }
-require 'auth.php';
-require "db.php";
+					
+            require "db.php";
  $query = "SELECT * FROM test";
 		$result = mysqli_query($con,$query) or die(mysql_error());
 		$rows = mysqli_num_rows($result);
@@ -72,30 +71,6 @@ require "db.php";
 			
 			 while($row = $result->fetch_assoc()) 
 			 {
-				 
-				 $nazwa="ilosc-".strtolower(normalize($row['tytul']));
-				 $$nazwa=0;
-				 $kto=$row['kto'];
-$username=$_SESSION['username'];
-  
-  
-   $jest=false;
-   $ktoo=explode(' ',$kto);
-
-$licznik=0;
-  foreach($ktoo as $osoba)
-  {
-    if($osoba==$username)
-    {
-			$jest=true;
-			$$nazwa++;
-    }
-	}
-
-
-  
-				 if($jest)
-				 {
 				echo "
 				<table>
   <tr>
@@ -108,9 +83,10 @@ $licznik=0;
 	<tr>
     <td >ISBN:<br>".$row["isbn"]."</td>
      <td >
-								Wypożyczone: ".$$nazwa."
-								<form name='registration' action='reservation?kek=".$row['tytul']."' method='post'>
+								Dostępne: ".$row['dostepne']."/".$row['ilosc']."
+								<form name='registration' action='reservation.php?kek=".$row['tytul']."' method='post'>
 								<select name='get-".strtolower(normalize($row['tytul']))."'>
+								<option>Wypożycz</option>
 								<option>Oddaj</option>
 								</select>
 								<input type='submit' name='submit' value='Wyślij!' />
@@ -121,7 +97,6 @@ $licznik=0;
                </table>
                <br>
   ";
-				 }
 			 }
 		}
 		else
@@ -131,18 +106,19 @@ $licznik=0;
 
 
 ?>
-          </center>
-</div>
-        
+            </center>
+        </div>
+		<div class="clear"></div>
 	</div>
 </div>
-<div id="modal01" class="w3-modal" onclick="this.style.display='none'">
+	<div id="modal01" class="w3-modal" onclick="this.style.display='none'">
   <span class="w3-button w3-hover-red w3-xlarge w3-display-topright">&times;</span>
   <div class="w3-modal-content w3-animate-zoom">
     <img id="img01" style="width:100%">
   </div>
-</div>	
- <script>
+</div>
+
+<script>
 function onClick(element) {
   document.getElementById("img01").src = element.src;
   document.getElementById("modal01").style.display = "block";

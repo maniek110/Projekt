@@ -1,26 +1,42 @@
-<?php
-include("auth.php"); ?>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="utf-8">
-<title>Zbiór</title>
-<link rel="stylesheet" href="css/style.css" />
-</head>
-<body>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-<script src="script.js"></script>
-<style>
+<?require('auth.php')?>
+<!DOCTYPE HTML> 
+<html> 
+<head> 
 
-table, th, td {
-    border: 1px solid black;
-}
-	</style>
+	<meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link rel="stylesheet" href="template.css" type="text/css">
+    <link rel="stylesheet" href="images.css"> 
+	</head> 
+ 
+<body> 
 
-<div class="show">
-<?php
-	
-	function normalize($tekst)
+<div id="top">
+	<div class="container">
+        <a href="search" id="logo"><h2>Biblioteka Publiczna <br>w Ciechocinku</h2></a>
+		<div class="clear"></div>
+	</div>
+</div>
+
+<div id="topmenu">
+	<div class="container">
+		<ul><li><a href="start">Home</a></li>
+		    <li><a href="search">Wyszukiwanie</a></li>
+		    <li><a href="add">Dodawanie</a></li>
+		    <li><a href="show">Zbiór książek</a></li>
+			<li><a href="rented">Wypożyczone ksiązki</a></li>
+		    <li><a href="logout">Wyloguj</a></li>
+		</ul>
+		<div class="clear"></div>
+	</div>
+	</div>
+
+<div id="main">
+	<div class="container">
+        <div id="content" class="height" style="width:100%">
+        <center><?php
+					
+					function normalize($tekst)
 {
   $tabela = Array(
 	" " => "-",
@@ -45,8 +61,8 @@ table, th, td {
 
   return strtr($tekst,$tabela);
 }
-	
-require "db.php";
+					
+            require "db.php";
  $query = "SELECT * FROM test";
 		$result = mysqli_query($con,$query) or die(mysql_error());
 		$rows = mysqli_num_rows($result);
@@ -58,16 +74,16 @@ require "db.php";
 				echo "
 				<table>
   <tr>
-    <th width=15%>".$row["tytul"]."</th>
-    <th width=15% rowspan='2'><img src='uploads/".$row["okladka"]."' alt='' height='594' width='420'></th>
+    <th width=15%>Tytuł:<br>".$row["tytul"]."</th>
+    <th width=15% rowspan='2'><img onclick='onClick(this)' src='uploads/".$row["okladka"]."' alt='' height='315px' width='221px'></th>
   </tr>
   <tr>
-    <td width=30%>  ~ ".$row["autor"]."</td>
+    <td width=30%>  Autor:<br> ".$row["autor"]."</td>
   </tr>
 	<tr>
-    <td >".$row["isbn"]."</td>
+    <td >ISBN:<br>".$row["isbn"]."</td>
      <td >
-								Dostępne:".$row['dostepne']."/".$row['ilosc']."
+								Dostępne: ".$row['dostepne']."/".$row['ilosc']."
 								<form name='registration' action='reservation?kek=".$row['tytul']."' method='post'>
 								<select name='get-".strtolower(normalize($row['tytul']))."'>
 								<option>Wypożycz</option>
@@ -90,8 +106,24 @@ require "db.php";
 
 
 ?>
-<p><a href="index.php">Strona główna</a></p>
-<a href="logout.php">Wyloguj</a>
+            </center>
+        </div>
+		<div class="clear"></div>
+	</div>
 </div>
-</body>
-</html>
+	<div id="modal01" class="w3-modal" onclick="this.style.display='none'">
+  <span class="w3-button w3-hover-red w3-xlarge w3-display-topright">&times;</span>
+  <div class="w3-modal-content w3-animate-zoom">
+    <img id="img01" style="width:100%">
+  </div>
+</div>
+
+<script>
+function onClick(element) {
+  document.getElementById("img01").src = element.src;
+  document.getElementById("modal01").style.display = "block";
+}
+</script>
+</body> 
+ 
+</html> 

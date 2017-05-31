@@ -13,19 +13,19 @@
 <script src="script.js"></script>
 <div id="top">
 	<div class="container">
-        <a href="start" id="logo"><h2>Biblioteka Publiczna <br>w Ciechocinku</h2></a>
+        <a href="index.php" id="logo"><h2>Biblioteka Publiczna <br>w Ciechocinku</h2></a>
 		<div class="clear"></div>
 	</div>
 </div>
 
 <div id="topmenu">
 	<div class="container">
-		<ul><li><a href="start">Home</a></li>
-		    <li><a href="search">Wyszukiwanie</a></li>
-		    <li><a href="add">Dodawanie</a></li>
-		    <li><a href="show">Zbiór książek</a></li>
-			<li><a href="rented">Wypożyczone ksiązki</a></li>
-		    <li><a href="logout">Wyloguj</a></li>
+		<ul><li><a href="index.php">Home</a></li>
+		    <li><a href="index2.php">Wyszukiwanie</a></li>
+		    <li><a href="add.php">Dodawanie</a></li>
+		    <li><a href="show.php">Zbiór książek</a></li>
+			<li><a href="rented.php">Wypożyczone ksiązki</a></li>
+		    <li><a href="logout.php">Wyloguj</a></li>
 		</ul>
 		<div class="clear"></div>
 	</div>
@@ -109,7 +109,7 @@ $licznik=0;
     <td >ISBN:<br>".$row["isbn"]."</td>
      <td >
 								Wypożyczone: ".$$nazwa."
-								<form name='registration' action='reservation?kek=".$row['tytul']."' method='post'>
+								<form name='registration' action='reservation.php?kek=".$row['tytul']."' method='post'>
 								<select name='get-".strtolower(normalize($row['tytul']))."'>
 								<option>Oddaj</option>
 								</select>

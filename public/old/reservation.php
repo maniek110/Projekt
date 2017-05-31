@@ -1,38 +1,3 @@
-<!DOCTYPE HTML> 
-<html> 
-<head> 
-
-	<meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <link rel="stylesheet" href="template.css" type="text/css"> 
-	</head> 
- 
-<body> 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-<script src="script.js"></script>
-<div id="top">
-	<div class="container">
-        <a href="start" id="logo"><h2>Biblioteka Publiczna <br>w Ciechocinku</h2></a>
-		<div class="clear"></div>
-	</div>
-</div>
-
-<div id="topmenu">
-	<div class="container">
-		<ul><li><a href="start">Home</a></li>
-		    <li><a href="search">Wyszukiwanie</a></li>
-		    <li><a href="add">Dodawanie</a></li>
-		    <li><a href="show">Zbiór książek</a></li>
-			<li><a href="rented">Wypożyczone ksiązki</a></li>
-		    <li><a href="logout">Wyloguj</a></li>
-		</ul>
-		<div class="clear"></div>
-	</div>
-	</div>
-<div id="main">
-	<div class="container">
-        <div id="content" style="width:100%"><br><br><center>
-
 <?
 require('auth.php');
 require('db.php');
@@ -89,13 +54,13 @@ function normalize($tekst)
   return strtr($tekst,$tabela);
 }
 $username=$_SESSION['username'];
- $ile;
-  $limit;
+ $ile=0;
+  $limit=0;
  $username;
 $kek=$_GET['kek'];
 $req='get-'.strtolower(normalize($kek));
 $wh=trim(strtolower(no_pl($_REQUEST[$req])));
-
+echo $wh;
 
 $query = "SELECT * FROM users WHERE uname='".$username."'";
 $result = mysqli_query($con,$query) or die(mysql_error());
@@ -103,8 +68,10 @@ $result = mysqli_query($con,$query) or die(mysql_error());
    while($row = $result->fetch_assoc()) 
       {      
       $ile=$row['ile'];
+				echo $ile;
   
       $limit=$row['limit'];
+				echo $limit;
       }
 
 
@@ -167,22 +134,24 @@ elseif($wh=='oddaj')
    $ktoo=explode(' ',$kto);
   $jest=false;
   $licznik=0;
-  for($i=0;$i<=$ilosc;$i++)
+  foreach($ktoo as $osoba)
   {
-    if($ktoo[$i]==$username)
+    if($osoba==$username)
     {
-      $ktoo[$i]='';
+      $ktoo[$licznik]='';
+      $licznik++;
       $jest=true;
-			echo var_dump($ktoo);
-      break 1;
+      break;
     }
   }
-	
- 
+  $osoby=array();
   $licznikk=0;
-	echo var_dump($ktoo);
-   
-  $kto=implode(' ',$ktoo);
+    foreach($ktoo as $osobaa)
+  {
+    $osoby[$licznik]=$osobaa;
+    $licznikk++;
+  }
+  $kto=implode(' ',$osoby);
   
    
    if($jest==true)
@@ -222,13 +191,3 @@ else
   echo 'Błąd!3';
 }
         ?>
-          </center>
-</div>
-        
-	</div>
-</div>
-
-	
-</body> 
- 
-</html> 

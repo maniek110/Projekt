@@ -12,16 +12,16 @@
 <script src="script.js"></script>
 <div id="top">
 	<div class="container">
-        <a href="start" id="logo"><h2>Biblioteka Publiczna <br>w Ciechocinku</h2></a>
+        <a href="index.php" id="logo"><h2>Biblioteka Publiczna <br>w Ciechocinku</h2></a>
 		<div class="clear"></div>
 	</div>
 </div>
 
 <div id="topmenu">
 	<div class="container">
-		<ul><li><a href="start">Home</a></li>
-		    <li><a href="login">Logowanie</a></li>
-		    <li><a href="register">Rejestracja</a></li>
+		<ul><li><a href="index.php">Home</a></li>
+		    <li><a href="login.php">Logowanie</a></li>
+		    <li><a href="register.php">Rejestracja</a></li>
 		</ul>
 		<div class="clear"></div>
 	</div>
@@ -65,7 +65,7 @@
 				$_SESSION['limit'] = $row["limit"];
 			 }
 	
-			header("Location: main"); 
+			header("Location: index3.php"); 
             }else{
 					
 				echo "<h3>Błędny login lub hasło.</h3><br/>";
