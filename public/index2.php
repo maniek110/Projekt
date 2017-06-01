@@ -193,7 +193,7 @@ function normalize($tekst)
 		
 				for($i=0;$i<=$bo;$i++)
 				{
-					for($j=0;$j<=2;$j++)
+					for($j=0;$j<=3;$j++)
 					 {
 						 $var =  $books[$i][$j];
 				    if($title== $var)
